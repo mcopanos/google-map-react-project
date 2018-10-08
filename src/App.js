@@ -10,6 +10,20 @@ class App extends Component {
     markers: [],
   }
   
+  closeWindow = () => {
+    const markers = this.state.markers;
+    markers.map(marker => {
+      marker.isOpen=false;
+      return marker;
+    })
+  }
+
+  openWindow = (marker) => {
+    this.closeWindow();
+    marker.isOpen = true;
+    this.setState({markers: Object.assign(this.state.markers,marker)})
+    console.log('click');
+  }
   componentDidMount(){
     FourSquareAPI.search({
       ll:	'44.3,37.2',
@@ -37,9 +51,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Map 
+        <Map id="map"
           {...this.state}
-          id="map"/>
+          openWindow={this.openWindow}
+        />
       </div>
     );
   }
