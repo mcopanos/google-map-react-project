@@ -5,6 +5,7 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
     defaultZoom={13}
     defaultCenter={{lat: 41.881832, lng: -87.623177}}
+    center={{lat: 41.881832, lng: -87.623177}}
   >
     {props.markers && props.markers.filter(marker => marker.isVisible)
     .map((marker, index) => (
@@ -15,7 +16,7 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
             animation={window.google.maps.Animation.DROP}
         >
             {marker.isOpen && <InfoWindow onClick={props.openWindow}>
-                <p>hello</p>
+                <p>{marker.id}</p>
             </InfoWindow>}
         </Marker>
     ))}
@@ -26,12 +27,12 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
 export default class Map extends Component{
     render() {
         return(
-            <MyMapComponent
+            <MyMapComponent className="map-header"
                 {...this.props}
                 isMarkerShown
                 googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBBi_PjE3B6SmXv9A4nkh9-YlyJJePG6oM"
                 loadingElement={<div style={{ height: `100%` }} />}
-                containerElement={<div style={{ height: `100vh` }} />}
+                containerElement={<div style={{width: `100%`, height: `95vh` }} />}
                 mapElement={<div style={{ height: `100%` }} />}
             />
         )

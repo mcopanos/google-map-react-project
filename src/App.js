@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Map from './components/Map'
+import SideBar from './components/SideBar'
 import FourSquareAPI from './FourSquareAPI'
 import './App.css';
 
@@ -16,20 +17,21 @@ class App extends Component {
       marker.isOpen=false;
       return marker;
     })
+    console.log(markers.id);
   }
 
   openWindow = (marker) => {
     this.closeWindow();
     marker.isOpen = true;
     this.setState({markers: Object.assign(this.state.markers,marker)})
-    console.log('click');
+    FourSquareAPI.getVenuePhotos(marker.id)
   }
   componentDidMount(){
     FourSquareAPI.search({
       ll:	'44.3,37.2',
       near: 'Chicago, IL',
       query: 'park',
-      limit: 6
+      limit: 10
     }).then(results => {
       const venues = results.response.venues;
       const markers = venues.map(venue => {
@@ -43,14 +45,18 @@ class App extends Component {
           isVisible: true
         }
       });
-      this.setState({ venues, markers })
-     console.log(markers);
+      this.setState({markers, venues})
+     console.log(venues);
     })
   }
 
   render() {
     return (
       <div className="App">
+      <div className="container">
+        <SideBar {...this.state}/>
+      </div>
+        
         <Map id="map"
           {...this.state}
           openWindow={this.openWindow}

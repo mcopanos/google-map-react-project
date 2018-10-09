@@ -1,5 +1,63 @@
-.App {
-  text-align: center;
+body {
+  /* background: rgb(30, 84, 142); */
+  font-size: 16px;
+  background: #24b31a;
 }
 
+svg {
+  padding: 15px 25px
+ }
+.App {
+  text-align: center;
+  font-family: 'Open Sans Condensed', sans-serif;
+  display: flex;
+  margin-top: 0.4rem;
+}
 
+.container {
+  margin:auto;
+  width: 25%;
+}
+.side-bar {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  height: 100vh;
+  background: #24b31a;
+  /* background: #c5c6c9; */
+  /* border: 1px dotted; */
+  text-align: center;
+  box-shadow: 5px 10px 8px #888888;
+  /* position: relative;
+  z-index: 1; */
+}
+
+.side-bar input {
+  height: 35px;
+  width: 90%;
+  margin-top: 1rem;
+  box-shadow: 5px 5px 5px #888888;
+  font-size: 18px;
+}
+
+.main-content {
+  padding: 10px;
+}
+
+.list-items {
+  list-style-type: none;
+  padding: 0;
+  font-size: 24px;
+  line-height: 1.8;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column
+}
+.list-items li {
+  border: 1px solid #3e3f42;
+  background: #b2b3b7;
+  box-shadow: 5px 8px 8px #888888;
+}
