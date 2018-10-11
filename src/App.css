@@ -1,29 +1,31 @@
 body {
   /* background: rgb(30, 84, 142); */
   font-size: 16px;
-  background: #24b31a;
+  background: #1fdf75;
 }
 
 svg {
   padding: 15px 25px
  }
+
 .App {
   text-align: center;
   font-family: 'Open Sans Condensed', sans-serif;
   display: flex;
-  margin-top: 0.4rem;
+   margin-top: 0.4rem;
+   height: 100vh;
 }
 
 .container {
-  margin:auto;
-  width: 25%;
+  /* margin:auto; */
+  /* width: 25%; */
 }
 .side-bar {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   height: 100vh;
-  background: #24b31a;
+  background:  #1fdf75;
   /* background: #c5c6c9; */
   /* border: 1px dotted; */
   text-align: center;
@@ -60,4 +62,6 @@ ul {
   border: 1px solid #3e3f42;
   background: #b2b3b7;
   box-shadow: 5px 8px 8px #888888;
+  margin-top: 6px;
+  cursor: pointer;
 }
