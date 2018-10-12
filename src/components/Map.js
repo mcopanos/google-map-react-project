@@ -21,10 +21,10 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
             details.bestPhoto && 
             (
                 <InfoWindow onClick={props.openWindow}>
-                    <div>
+                    <>
                         <img src={`${details.bestPhoto.prefix}175x150${details.bestPhoto.suffix}`} alt={"Park"}/>
                         <p>{details.name}</p>
-                    </div>    
+                    </>
                 </InfoWindow>
             )};
         </Marker>

@@ -27,18 +27,19 @@ export default class Map extends Component {
         showingVenues.sort(sortBy('name'));
 
         if (query) {
-            const markers = this.props.venues.map(venue => {
-                const isMatching = venue.name.toLowerCase()
-                .includes(query.toLowerCase());
-                const marker = this.props.markers.find(marker => marker.id === venue.id);
-                if (isMatching) {
-                    marker.isVisible = true;
-                } else {
-                    marker.isVisible = false;
-                }
-                return marker;    
-            })
-            this.props.changeState({ markers });
+            // const markers = this.props.venues.map(venue => {
+            //     const isMatching = venue.name.toLowerCase()
+            //     .includes(query.toLowerCase());
+            //     const marker = this.props.markers.find(marker => marker.id === venue.id);
+            //     if (isMatching) {
+            //         marker.isVisible = true;
+            //     } else {
+            //         marker.isVisible = false;
+            //     }
+            //     return marker;    
+            // })
+            console.log(query);
+            // this.props.changeState({ markers });
             // const match = new RegExp(escapeRegExp(query), 'i');
             // let isMatching = venues.find(venue =>  match.test(venue.id));
             // isMatching? markers.isVisible = true : markers.isVisible = false;
@@ -65,10 +66,14 @@ export default class Map extends Component {
                             </strong>
                         </u></h3>
                     <div>
+                        <label htmlFor="namedInput">filter:</label>
                         <input 
-                            type='text'
+                            type="text"
                             placeholder="search here"
+                            aria-label="label"
+                            aria-required="true"
                             value={this.state.query}
+                            name="name"
                             // double check this
                             onChange={(event) => this.udateQuery(event.target.value)}
                         />
