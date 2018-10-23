@@ -1,37 +1,36 @@
 body {
-  /* background: rgb(30, 84, 142); */
   font-size: 16px;
+  border: dotted 1px;
   background: #1fdf75;
+  overflow: hidden;
 }
 
 svg {
-  padding: 15px 25px
- }
+  position: relative;
+  padding: auto;
+  z-index: auto;
+  left: 2%;
+  top: 5%;
+}
 
 .App {
   text-align: center;
   font-family: 'Open Sans Condensed', sans-serif;
   display: flex;
-   margin-top: 0.4rem;
-   height: 100vh;
+  border: dotted 1px
 }
 
-.container {
-  /* margin:auto; */
-  /* width: 25%; */
-}
 .side-bar {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  height: 100vh;
+  /* height: 100vh; */
+  margin-top: 10px;
   background:  #1fdf75;
-  /* background: #c5c6c9; */
-  /* border: 1px dotted; */
+  max-width: 100%; 
+  border: 1px dotted;
   text-align: center;
-  box-shadow: 5px 10px 8px #888888;
-  /* position: relative;
-  z-index: 1; */
+  
 }
 
 .side-bar input {
@@ -64,4 +63,24 @@ ul {
   box-shadow: 5px 8px 8px #888888;
   margin-top: 6px;
   cursor: pointer;
+}
+
+
+.map-header {
+  display: none;
+  position: fixed;
+  width: 36;
+  height: 30px;
+  left: 36px;
+  top: 36;
+}
+@media screen and (mX-width: 320px) {
+/* and (max-width: 620px) { */
+  .side-bar {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    background:  #1fdf75;
+    max-width: 50%;
+  }
 }

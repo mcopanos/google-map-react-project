@@ -9,9 +9,9 @@ class App extends Component {
   state= {
     venues: [],
     markers: [],
-    changeState: obj => {this.setState(obj)}
+    //changeState: obj => {this.setState(obj)}
   }
-  
+
   closeWindow = () => {
     const markers = this.state.markers;
     markers.map(marker => {
@@ -73,7 +73,6 @@ class App extends Component {
           listItemEvent={this.listItemEvent}
         />
       </div>
-        
         <Map id="map"
           {...this.state}
           openWindow={this.openWindow}

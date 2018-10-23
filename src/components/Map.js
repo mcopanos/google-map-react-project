@@ -22,7 +22,7 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
             (
                 <InfoWindow onClick={props.openWindow}>
                     <>
-                        <img src={`${details.bestPhoto.prefix}175x150${details.bestPhoto.suffix}`} alt={"Park"}/>
+                        <img src={`${details.bestPhoto.prefix}150x175${details.bestPhoto.suffix}`} alt={`${details.name}`} />
                         <p>{details.name}</p>
                     </>
                 </InfoWindow>
@@ -34,6 +34,7 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
 ))
 
 export default class Map extends Component{
+    
     render() {
         
         return(
@@ -43,7 +44,7 @@ export default class Map extends Component{
                 googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBBi_PjE3B6SmXv9A4nkh9-YlyJJePG6oM"
                 loadingElement={<div style={{ height: `100%` }} />}
                 containerElement={<div style={{width: `100%`, height: `100vh` }} />}
-                mapElement={<div style={{ height: `100%` }} />}
+                mapElement={<div style={{ height: `100vh` }} />}
             />
         )
         
