@@ -9,10 +9,12 @@ export default class Map extends Component {
         query: ''
     }
 
+    // Update the state of query
     udateQuery = query => {
         this.setState({ query });
     }
 
+    // Change the visible status of a marker
     isVisible = (status) => {
         const markers = this.props.markers;
         markers.map(marker => {
@@ -26,7 +28,8 @@ export default class Map extends Component {
         const { venues, markers } = this.props;
         const { query } = this.state;
          let showingVenues;
-           
+        
+        //  Filter through list of venues
         if (query) {
             const match = new RegExp(escapeRegExp(query), 'i');
             showingVenues = venues.filter(venue => match.test(venue.name));
@@ -62,6 +65,7 @@ export default class Map extends Component {
         }
 
         return (
+            // Sidebar and burger icon
             <Menu>
                 <div className="side-bar">
                     <div className='menu'>
@@ -95,7 +99,7 @@ export default class Map extends Component {
                         {showingVenues.length !== venues.length && (
                             <div><span>Now Showing {showingVenues.length} of {venues.length}</span></div>
                         )}
-
+                        
                         <ul className="list-items">
                         {showingVenues
                             .map((venue, index) =>

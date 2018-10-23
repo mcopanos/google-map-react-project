@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
 
+// Getting map on the screen
 const MyMapComponent = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
     defaultZoom={13}
     defaultCenter={{lat: 41.881832, lng: -87.623177}}
     center={{lat: 41.881832, lng: -87.623177}}
   >
+  {/* Getting the markers to show up on the map */}
     {props.markers && props.markers.filter(marker => marker.isVisible)
     .map((marker, index) => {
         const details = props.venues.find(venue => venue.id === marker.id);
@@ -17,12 +19,13 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
             position={marker.location}
             animation={window.google.maps.Animation.DROP}
         >
+        {/* Checking to see if the info window is open and if so display our photo and description */}
             {marker.isOpen && 
-            details.bestPhoto && 
+            details.bestPhoto &&
             (
                 <InfoWindow onClick={props.openWindow}>
                     <>
-                        <img src={`${details.bestPhoto.prefix}150x175${details.bestPhoto.suffix}`} alt={`${details.name}`} />
+                        <img src={`${details.bestPhoto.prefix}200x175${details.bestPhoto.suffix}`} alt={`${details.name}`} />
                         <p>{details.name}</p>
                     </>
                 </InfoWindow>
@@ -36,7 +39,7 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
 export default class Map extends Component{
     
     render() {
-        
+
         return(
             <MyMapComponent className="map-header"
                 {...this.props}

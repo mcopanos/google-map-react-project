@@ -12,6 +12,7 @@ class App extends Component {
     //changeState: obj => {this.setState(obj)}
   }
 
+  // Close info window
   closeWindow = () => {
     const markers = this.state.markers;
     markers.map(marker => {
@@ -20,6 +21,7 @@ class App extends Component {
     })
   }
 
+  // Open info window
   openWindow = (marker) => {
     this.closeWindow();
     marker.isOpen = true;
@@ -35,11 +37,23 @@ class App extends Component {
     }).catch(err => console.log(err));  
   }
 
+  // toggleBounce = () => {
+  //   const marker = this.state;
+  //   if (marker.getAnimation() !== null) {
+  //     marker.setAnimation(null);
+  //   } else {
+  //     marker.setAnimation(window.google.maps.Animation.BOUNCE);
+  //   }
+  // }
+
+  // Open window of clicked list item
   listItemEvent = (venue) => {
     const marker = this.state.markers.find(marker => marker.id === venue.id);
     this.openWindow(marker);
+    // marker.setAnimation(window.google.maps.Animation.BOUNCE);
   }
 
+  // Set state of venues and markers
   componentDidMount(){
     FourSquareAPI.search({
       ll:	'44.3,37.2',

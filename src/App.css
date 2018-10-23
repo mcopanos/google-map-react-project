@@ -27,9 +27,11 @@ svg {
   /* height: 100vh; */
   margin-top: 10px;
   background:  #1fdf75;
+  /* background: #3e3f42; */
   max-width: 100%; 
   border: 1px dotted;
   text-align: center;
+  opacity: 0.75;
   
 }
 
