@@ -6,12 +6,16 @@ import './App.css';
 
 
 class App extends Component {
-  state= {
-    venues: [],
-    markers: [],
-    //changeState: obj => {this.setState(obj)}
-  }
 
+  constructor() {
+    super();
+    this.state= {
+      venues: [],
+      markers: [],
+      updateMarkers: marker => {this.setState(marker);},
+    };
+  }
+  
   // Close info window
   closeWindow = () => {
     const markers = this.state.markers;
@@ -37,20 +41,10 @@ class App extends Component {
     }).catch(err => console.log(err));  
   }
 
-  // toggleBounce = () => {
-  //   const marker = this.state;
-  //   if (marker.getAnimation() !== null) {
-  //     marker.setAnimation(null);
-  //   } else {
-  //     marker.setAnimation(window.google.maps.Animation.BOUNCE);
-  //   }
-  // }
-
   // Open window of clicked list item
   listItemEvent = (venue) => {
     const marker = this.state.markers.find(marker => marker.id === venue.id);
     this.openWindow(marker);
-    // marker.setAnimation(window.google.maps.Animation.BOUNCE);
   }
 
   // Set state of venues and markers

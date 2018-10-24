@@ -5,64 +5,59 @@ import sortBy from 'sort-by'
 
 // Side Bar functionality goes here
 export default class Map extends Component {
-    state = {
-        query: ''
+
+    constructor() {
+        super();
+        this.state = {
+            query: ''
+        }
+    }
+    
+    
+    // Change the visible status of a marker
+    udateQuery = event => {
+        this.setState({ query: event });
+
+        const { venues, markers } = this.props;
+         let showingVenues;
+
+        if (event) {
+            const match = new RegExp(escapeRegExp(event), 'i');
+            showingVenues = venues.filter(venue => match.test(venue.name));
+            console.log(showingVenues);
+            const marker = markers.filter(marker => {
+                const isMatching = showingVenues.find(venue => venue.id === marker.id)
+                isMatching? marker.isVisible = true : marker.isVisible = false;
+                console.log(marker.isVisible);
+                return marker;
+            })
+
+            this.props.updateMarkers(marker);
+
+        } else {
+            showingVenues = venues;
+            const marker = this.props.markers
+            .map(marker => marker.isVisible = true);
+             this.props.updateMarkers(marker)
+        }
     }
 
     // Update the state of query
-    udateQuery = query => {
-        this.setState({ query });
-    }
-
-    // Change the visible status of a marker
-    isVisible = (status) => {
-        const markers = this.props.markers;
-        markers.map(marker => {
-            marker.isVisible = status;
-            return marker;
-        })
-       
-    }
-
     render() {
-        const { venues, markers } = this.props;
+        const { venues } = this.props;
         const { query } = this.state;
-         let showingVenues;
+        let showingVenues;
         
         //  Filter through list of venues
         if (query) {
             const match = new RegExp(escapeRegExp(query), 'i');
             showingVenues = venues.filter(venue => match.test(venue.name));
-            //console.log(showingVenues);
-            //this.isVisible(false);
+            console.log(showingVenues);
         } else {
             showingVenues = venues;
-            this.isVisible(true)
         }
+        // Sort by alphabetical order
         showingVenues.sort(sortBy('name'));
-
-        if (query) {
-            // const markers = this.props.venues.map(venue => {
-            //     const isMatching = venue.name.toLowerCase()
-            //     .includes(query.toLowerCase());
-            //     const marker = this.props.markers.find(marker => marker.id === venue.id);
-            //     if (isMatching) {
-            //         marker.isVisible = true;
-            //     } else {
-            //         marker.isVisible = false;
-            //     }
-            //     return marker;    
-            // })
-            console.log(query);
-            // this.props.changeState({ markers });
-            // const match = new RegExp(escapeRegExp(query), 'i');
-            // let isMatching = venues.find(venue =>  match.test(venue.id));
-            // isMatching? markers.isVisible = true : markers.isVisible = false;
-            // return isMatching;
-            // console.log(match);
-        } else {
-            console.log('not working');
-        }
 
         return (
             // Sidebar and burger icon
@@ -95,7 +90,7 @@ export default class Map extends Component {
                                 onChange={(event) => this.udateQuery(event.target.value)}
                             />
                         </div> 
-
+                        {/* Display the number of listings showing */}
                         {showingVenues.length !== venues.length && (
                             <div><span>Now Showing {showingVenues.length} of {venues.length}</span></div>
                         )}
@@ -110,6 +105,9 @@ export default class Map extends Component {
                                 {venue.name}
                             </li>)} 
                         </ul>
+                        <div>
+                            <p>Powered by <i className="fa fa-foursquare" aria-hidden="true">oursquare</i></p>
+                        </div>
                     </div>      
                 </div>
             </Menu>

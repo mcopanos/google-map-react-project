@@ -27,6 +27,7 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
                     <>
                         <img src={`${details.bestPhoto.prefix}200x175${details.bestPhoto.suffix}`} alt={`${details.name}`} />
                         <p>{details.name}</p>
+                        <p>{details.location.address}</p>
                     </>
                 </InfoWindow>
             )};
