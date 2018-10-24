@@ -6,39 +6,16 @@ import './App.css';
 
 
 class App extends Component {
-<<<<<<< HEAD
-=======
-
->>>>>>> 6fbfc0119532b05ef94d8b2eba044b75958f66fd
   constructor() {
     super();
     this.state= {
       venues: [],
       markers: [],
-<<<<<<< HEAD
-      query: '',
-    };
-  }
-  
-  isVisible = () => {
-    const markers = this.state.markers;
-      markers.map(marker => {
-        marker.isVisible = false
-        return marker;
-      })
-  }
-  
-  udateQuery = (query) => {
-        this.setState({ query });
-    }
-
-=======
       updateMarkers: marker => {this.setState(marker);},
     };
   }
   
   // Close info window
->>>>>>> 6fbfc0119532b05ef94d8b2eba044b75958f66fd
   closeWindow = () => {
     const markers = this.state.markers;
     markers.map(marker => {

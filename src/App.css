@@ -5,11 +5,6 @@ body {
   overflow: hidden;
 }
 
-<<<<<<< HEAD
-/* svg {
-  padding: 15px 25px
- } */
-=======
 svg {
   position: relative;
   padding: auto;
@@ -17,19 +12,12 @@ svg {
   left: 2%;
   top: 5%;
 }
->>>>>>> 6fbfc0119532b05ef94d8b2eba044b75958f66fd
 
 .App {
   text-align: center;
   font-family: 'Open Sans Condensed', sans-serif;
   display: flex;
-<<<<<<< HEAD
-  /* margin-top: 0.4rem; */
-  height: 100vh;
-  border: 1px dotted;
-=======
   border: dotted 1px
->>>>>>> 6fbfc0119532b05ef94d8b2eba044b75958f66fd
 }
 
 .side-bar {
@@ -39,21 +27,12 @@ svg {
   /* height: 100vh; */
   margin-top: 10px;
   background:  #1fdf75;
-<<<<<<< HEAD
-  /* background: #c5c6c9; */
-  border: 1px dotted;
-  text-align: center;
-  box-shadow: 5px 10px 8px #888888;
-  /* position: relative; */
-  /* z-index: 1; */
-=======
   /* background: #3e3f42; */
   max-width: 100%; 
   border: 1px dotted;
   text-align: center;
   opacity: 0.75;
   
->>>>>>> 6fbfc0119532b05ef94d8b2eba044b75958f66fd
 }
 
 .side-bar input {
