@@ -6,11 +6,16 @@ import './App.css';
 
 
 class App extends Component {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6fbfc0119532b05ef94d8b2eba044b75958f66fd
   constructor() {
     super();
     this.state= {
       venues: [],
       markers: [],
+<<<<<<< HEAD
       query: '',
     };
   }
@@ -27,6 +32,13 @@ class App extends Component {
         this.setState({ query });
     }
 
+=======
+      updateMarkers: marker => {this.setState(marker);},
+    };
+  }
+  
+  // Close info window
+>>>>>>> 6fbfc0119532b05ef94d8b2eba044b75958f66fd
   closeWindow = () => {
     const markers = this.state.markers;
     markers.map(marker => {
@@ -35,6 +47,7 @@ class App extends Component {
     })
   }
 
+  // Open info window
   openWindow = (marker) => {
     this.closeWindow();
     marker.isOpen = true;
@@ -50,11 +63,13 @@ class App extends Component {
     }).catch(err => console.log(err));  
   }
 
+  // Open window of clicked list item
   listItemEvent = (venue) => {
     const marker = this.state.markers.find(marker => marker.id === venue.id);
     this.openWindow(marker);
   }
 
+  // Set state of venues and markers
   componentDidMount(){
     FourSquareAPI.search({
       ll:	'44.3,37.2',
@@ -91,7 +106,6 @@ class App extends Component {
           udateQuery={this.udateQuery}
         />
       </div>
-        
         <Map id="map"
           {...this.state}
           openWindow={this.openWindow}
