@@ -1,9 +1,10 @@
-class Helper {
-    static baseURL() {
+
+class Api {
+    static url() {
         return 'https://api.foursquare.com/v2';
     }
 
-    static auth() {
+    static apiAuth() {
         const keys = {
             client_id: "EQUAMFAFEV0WAYVG5E4BJD2W0BN2OX5XKARYUJ20D34JFASA",
             client_secret: "5LCD0VJBLOQNR5AG5ODEMGJPLXE1NXQOMV1N40JY544HV3DJ",
@@ -14,28 +15,29 @@ class Helper {
             .join("&");
     }
 
-    static urlBuilder(urlParams) {
-        if (!urlParams) {
+    static builder(params) {
+        if (!params) {
             return '';
         }
-        return Object.keys(urlParams)
-            .map(key => `${key}=${urlParams[key]}`)
+        return Object.keys(params)
+            .map(key => `${key}=${params[key]}`)
             .join('&');
     }
+
     static headers() {
         return {
             Accept: 'application/json'
         };
     }
 
-    static simpleFetch(endPoint, method,urlParams) {
+    static fetch(endPoint, method, params) {
         let requestData = {
             method,
-            headers: Helper.headers()
+            headers: Api.headers()
         }
-        return fetch(`${Helper.baseURL()}${endPoint}?${Helper.auth()}&
-            ${Helper.urlBuilder(
-                urlParams
+        return fetch(`${Api.url()}${endPoint}?${Api.apiAuth()}&
+            ${Api.builder(
+                params
             )}`,
             requestData
         ).then(res => res.json())
@@ -43,13 +45,11 @@ class Helper {
 }
 
 export default class FourSquareAPI {
-    static search(urlParams) {
-        return Helper.simpleFetch('/venues/search', 'GET', urlParams);
+    static search(params) {
+        return Api.fetch('/venues/search', 'GET', params);
     }
+
     static getVenuesDetails(VENUE_ID) {
-        return Helper.simpleFetch(`/venues/${VENUE_ID}`, 'GET');
+        return Api.fetch(`/venues/${VENUE_ID}`, 'GET');
     } 
-    static getVenuePhotos(VENUE_ID) {
-        return Helper.simpleFetch(`/venues/${VENUE_ID}/photos`, 'GET');
-    }
 }
