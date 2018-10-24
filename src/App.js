@@ -6,12 +6,27 @@ import './App.css';
 
 
 class App extends Component {
-  state= {
-    venues: [],
-    markers: [],
-    changeState: obj => {this.setState(obj)}
+  constructor() {
+    super();
+    this.state= {
+      venues: [],
+      markers: [],
+      query: '',
+    };
   }
   
+  isVisible = () => {
+    const markers = this.state.markers;
+      markers.map(marker => {
+        marker.isVisible = false
+        return marker;
+      })
+  }
+  
+  udateQuery = (query) => {
+        this.setState({ query });
+    }
+
   closeWindow = () => {
     const markers = this.state.markers;
     markers.map(marker => {
@@ -51,6 +66,7 @@ class App extends Component {
       const markers = venues.map(venue => {
         return{
           id: venue.id,
+          name: venue.name,
           location: {
             lat: venue.location.lat,
             lng: venue.location.lng
@@ -59,7 +75,8 @@ class App extends Component {
           isVisible: true
         }
       });
-      this.setState({markers, venues})
+      this.setState({markers, venues});
+      console.log(venues);
     })
   }
 
@@ -69,14 +86,16 @@ class App extends Component {
       <div className="container">
         <SideBar 
           {...this.state}
-          changeState={this.state.changeState}
+          isVisibe={this.isVisible}
           listItemEvent={this.listItemEvent}
+          udateQuery={this.udateQuery}
         />
       </div>
         
         <Map id="map"
           {...this.state}
           openWindow={this.openWindow}
+          udateQuery={this.udateQuery}
         />
       </div>
     );

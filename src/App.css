@@ -2,18 +2,20 @@ body {
   /* background: rgb(30, 84, 142); */
   font-size: 16px;
   background: #1fdf75;
+  overflow: hidden;
 }
 
-svg {
+/* svg {
   padding: 15px 25px
- }
+ } */
 
 .App {
   text-align: center;
   font-family: 'Open Sans Condensed', sans-serif;
   display: flex;
-   margin-top: 0.4rem;
-   height: 100vh;
+  /* margin-top: 0.4rem; */
+  height: 100vh;
+  border: 1px dotted;
 }
 
 .container {
@@ -27,11 +29,11 @@ svg {
   height: 100vh;
   background:  #1fdf75;
   /* background: #c5c6c9; */
-  /* border: 1px dotted; */
+  border: 1px dotted;
   text-align: center;
   box-shadow: 5px 10px 8px #888888;
-  /* position: relative;
-  z-index: 1; */
+  /* position: relative; */
+  /* z-index: 1; */
 }
 
 .side-bar input {
@@ -44,7 +46,7 @@ svg {
 
 .main-content {
   padding: 10px;
-}
+} 
 
 .list-items {
   list-style-type: none;
