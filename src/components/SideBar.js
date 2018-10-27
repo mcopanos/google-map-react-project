@@ -9,10 +9,9 @@ export default class Map extends Component {
     constructor() {
         super();
         this.state = {
-            query: ''
+            query: '',
         }
     }
-    
     
     // Change the visible status of a marker
     udateQuery = event => {
@@ -42,6 +41,12 @@ export default class Map extends Component {
         }
     }
 
+    handleOpen = () => {
+        this.setState(state => ({
+            isSidebarOpen: !state.isSidebarOpen
+        }));
+    }
+
     // Update the state of query
     render() {
         const { venues } = this.props;
@@ -61,8 +66,8 @@ export default class Map extends Component {
 
         return (
             // Sidebar and burger icon
-            <Menu>
-                <div className="side-bar">
+            <Menu isOpen={false} >
+                <div type="menu" className="side-bar">
                     <div className='menu'>
 
                     </div>
@@ -86,7 +91,6 @@ export default class Map extends Component {
                                 aria-required="true"
                                 value={this.state.query}
                                 name="name"
-                                // double check this
                                 onChange={(event) => this.udateQuery(event.target.value)}
                             />
                         </div> 

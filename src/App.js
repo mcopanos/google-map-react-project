@@ -4,7 +4,6 @@ import SideBar from './components/SideBar'
 import FourSquareAPI from './FourSquareAPI'
 import './App.css';
 
-
 class App extends Component {
   constructor() {
     super();
@@ -12,6 +11,7 @@ class App extends Component {
       venues: [],
       markers: [],
       updateMarkers: marker => {this.setState(marker);},
+      // getAnimation: google.maps.Animation.BOUNCE,
     };
   }
   
@@ -28,10 +28,12 @@ class App extends Component {
   openWindow = (marker) => {
     this.closeWindow();
     marker.isOpen = true;
-    this.setState({markers: Object.assign(this.state.markers, marker)})
-
+    this.setState({markers: Object.assign(this.state.markers, marker)});
+    
+    // this.toggleBounce(marker);
     const venue = this.state.venues.find(venue => venue.id === marker.id);
-  
+    console.log('clicked');
+
     FourSquareAPI.getVenuesDetails(marker.id)
     .then(results => {
       const details = Object.assign(venue, results.response.venue);

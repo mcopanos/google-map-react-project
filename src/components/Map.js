@@ -10,18 +10,19 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
   >
   {/* Getting the markers to show up on the map */}
     {props.markers && props.markers.filter(marker => marker.isVisible)
-    .map((marker, index) => {
+    .map((marker, index, array) => {
         const details = props.venues.find(venue => venue.id === marker.id);
         return(
             <Marker 
-            key={index}
-            onClick={() => props.openWindow(marker)}
-            position={marker.location}
-            animation={window.google.maps.Animation.DROP}
-        >
+                key={index}
+                onClick={() => props.openWindow(marker)}
+                alt={marker.name}
+                position={marker.location}
+                animation={array.length === 1 ? window.google.maps.Animation.BOUNCE : window.google.maps.Animation.DROP }
+            >
         {/* Checking to see if the info window is open and if so display our photo and description */}
             {marker.isOpen && 
-            details.bestPhoto &&
+            details.bestPhoto && 
             (
                 <InfoWindow onClick={props.openWindow}>
                     <>
@@ -44,12 +45,11 @@ export default class Map extends Component{
         return(
             <MyMapComponent className="map-header"
                 {...this.props}
-
                 isMarkerShown
                 googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBBi_PjE3B6SmXv9A4nkh9-YlyJJePG6oM"
-                loadingElement={<div style={{ height: `100%` }} />}
-                containerElement={<div style={{width: `100%`, height: `100vh` }} />}
-                mapElement={<div style={{ height: `100vh` }} />}
+                loadingElement={<div style={{ height: `100%` }} alt={'google map'} />}
+                containerElement={<div style={{width: `100%`, height: `100vh` }} alt={'google map'}/>}
+                mapElement={<div style={{ height: `100vh` }} alt={'google map'}/>}
             />
         )
         
