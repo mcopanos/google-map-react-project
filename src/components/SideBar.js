@@ -66,12 +66,12 @@ export default class Map extends Component {
 
         return (
             // Sidebar and burger icon
-            <Menu isOpen={false} >
-                <div type="menu" className="side-bar">
-                    <div className='menu'>
+            <Menu >
+                <main type="menu" className="side-bar">
+                    {/* <div className='menu'>
 
-                    </div>
-                    <div className="main-content">
+                    </div> */}
+                    <section className="main-content">
                         <h1>Welcome to the Chicago area</h1><hr></hr>
                             <h3><u>
                                 <strong>
@@ -103,6 +103,7 @@ export default class Map extends Component {
                         {showingVenues
                             .map((venue, index) =>
                             <li 
+                                role='list'
                                 key={index} 
                                 onClick={() => this.props.listItemEvent(venue)}
                             >
@@ -112,8 +113,8 @@ export default class Map extends Component {
                         <div>
                             <p>Powered by <i className="fa fa-foursquare" aria-hidden="true">oursquare</i></p>
                         </div>
-                    </div>      
-                </div>
+                    </section>      
+                </main>
             </Menu>
         )
     }
