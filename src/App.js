@@ -48,6 +48,11 @@ class App extends Component {
     this.openWindow(marker);
   }
 
+  listItemKeyPress = (venue) => {
+    const marker = this.state.markers.find(marker => marker.id === venue.id);
+    this.openWindow(marker);
+  }
+
   // Set state of venues and markers
   componentDidMount(){
     FourSquareAPI.search({
@@ -83,6 +88,7 @@ class App extends Component {
           isVisibe={this.isVisible}
           listItemEvent={this.listItemEvent}
           udateQuery={this.udateQuery}
+          listItemKeyPress={this.listItemKeyPress}
         />
       </div>
         <Map id="map"

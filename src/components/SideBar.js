@@ -82,18 +82,18 @@ export default class Map extends Component {
                                     </em>
                                 </strong>
                             </u></h3>
-                        <div>
+                        <section>
                             <label htmlFor="namedInput">filter:</label>
                             <input 
                                 type="text"
                                 placeholder="search here"
-                                aria-label="label"
+                                aria-label="filter parks"
                                 aria-required="true"
                                 value={this.state.query}
                                 name="name"
                                 onChange={(event) => this.udateQuery(event.target.value)}
                             />
-                        </div> 
+                        </section> 
                         {/* Display the number of listings showing */}
                         {showingVenues.length !== venues.length && (
                             <div><span>Now Showing {showingVenues.length} of {venues.length}</span></div>
@@ -105,7 +105,9 @@ export default class Map extends Component {
                             <li 
                                 role='list'
                                 key={index} 
+                                tabIndex='0'
                                 onClick={() => this.props.listItemEvent(venue)}
+                                onKeyPress={()=> this.props.listItemKeyPress(venue)}
                             >
                                 {venue.name}
                             </li>)} 

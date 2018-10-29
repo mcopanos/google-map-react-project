@@ -44,6 +44,7 @@ export default class Map extends Component{
 
         return(
             <MyMapComponent className="map-header"
+            // Catch error handler for map not loading!!
                 {...this.props}
                 isMarkerShown
                 googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBBi_PjE3B6SmXv9A4nkh9-YlyJJePG6oM"
