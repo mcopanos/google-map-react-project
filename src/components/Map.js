@@ -15,16 +15,18 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
         return(
             <Marker 
                 key={index}
+                aria-label='marker'
+                tabIndex='0'
                 onClick={() => props.openWindow(marker)}
                 alt={marker.name}
                 position={marker.location}
-                animation={array.length === 1 ? window.google.maps.Animation.BOUNCE : window.google.maps.Animation.DROP }
+                animation={array.length !== 7 ? window.google.maps.Animation.BOUNCE : window.google.maps.Animation.DROP }
             >
         {/* Checking to see if the info window is open and if so display our photo and description */}
             {marker.isOpen && 
             details.bestPhoto && 
             (
-                <InfoWindow onClick={props.openWindow}>
+                <InfoWindow aria-label="Venue info window" onClick={props.openWindow}>
                     <>
                         <img src={`${details.bestPhoto.prefix}200x175${details.bestPhoto.suffix}`} alt={`${details.name}`} />
                         <p>{details.name}</p>
@@ -47,6 +49,8 @@ export default class Map extends Component{
             // Catch error handler for map not loading!!
                 {...this.props}
                 isMarkerShown
+                role='application'
+                aria-label='map'
                 googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBBi_PjE3B6SmXv9A4nkh9-YlyJJePG6oM"
                 loadingElement={<div style={{ height: `100%` }} alt={'google map'} />}
                 containerElement={<div style={{width: `100%`, height: `100vh` }} alt={'google map'}/>}

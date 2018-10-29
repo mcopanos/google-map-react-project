@@ -76,7 +76,7 @@ class App extends Component {
       });
       this.setState({markers, venues});
       console.log(venues);
-    })
+    }).catch(error => alert('Sorry no information availble at this time!'))
   }
 
   render() {

@@ -41,6 +41,8 @@ class Api {
             )}`,
             requestData
         ).then(res => res.json())
+        // .catch(error => console.log(error, 'Sorry no information availble at this time!'))
+
     }
 }
 

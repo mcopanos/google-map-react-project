@@ -93,7 +93,11 @@ export default class Map extends Component {
                                 name="name"
                                 onChange={(event) => this.udateQuery(event.target.value)}
                             />
-                        </section> 
+                        </section>
+                        {/* Handles error if there is no matches */}
+                        {showingVenues.length === 0 && (
+                            <div><span><h1>Sorry! No matches found!</h1></span></div>
+                        )}
                         {/* Display the number of listings showing */}
                         {showingVenues.length !== venues.length && (
                             <div><span>Now Showing {showingVenues.length} of {venues.length}</span></div>
