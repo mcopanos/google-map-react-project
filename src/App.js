@@ -11,7 +11,7 @@ class App extends Component {
       venues: [],
       markers: [],
       updateMarkers: marker => {this.setState(marker);},
-      // getAnimation: google.maps.Animation.BOUNCE,
+      animation: null,
     };
   }
   
@@ -29,16 +29,12 @@ class App extends Component {
     this.closeWindow();
     marker.isOpen = true;
     this.setState({markers: Object.assign(this.state.markers, marker)});
-    
-    // this.toggleBounce(marker);
     const venue = this.state.venues.find(venue => venue.id === marker.id);
-    console.log('clicked');
 
     FourSquareAPI.getVenuesDetails(marker.id)
     .then(results => {
       const details = Object.assign(venue, results.response.venue);
       this.setState({venues: Object.assign(this.state.venues, details)})
-      console.log(details);
     }).catch(err => console.log(err));  
   }
 
@@ -71,7 +67,8 @@ class App extends Component {
             lng: venue.location.lng
           },
           isOpen: false,
-          isVisible: true
+          isVisible: true,
+          getAnimation: null
         }
       });
       this.setState({markers, venues});

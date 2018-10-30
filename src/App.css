@@ -75,6 +75,8 @@ ul {
   left: 36px;
   top: 36;
 }
+
+
 @media screen and (mX-width: 320px) {
 /* and (max-width: 620px) { */
   .side-bar {

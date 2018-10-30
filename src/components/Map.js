@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
+import HandleError from './HandleError';
 
 // Getting map on the screen
 const MyMapComponent = withScriptjs(withGoogleMap((props) =>
@@ -15,22 +16,25 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
         return(
             <Marker 
                 key={index}
-                aria-label='marker'
-                tabIndex='0'
+                aria-label="marker"
                 onClick={() => props.openWindow(marker)}
                 alt={marker.name}
                 position={marker.location}
-                animation={array.length !== 7 ? window.google.maps.Animation.BOUNCE : window.google.maps.Animation.DROP }
+                animation={marker.isOpen || array.length < 7 ? 1 : 2}
             >
         {/* Checking to see if the info window is open and if so display our photo and description */}
             {marker.isOpen && 
             details.bestPhoto && 
             (
-                <InfoWindow aria-label="Venue info window" onClick={props.openWindow}>
+                <InfoWindow 
+                    aria-label="Venue info window" 
+                    onClick={props.openWindow} 
+                >
                     <>
                         <img src={`${details.bestPhoto.prefix}200x175${details.bestPhoto.suffix}`} alt={`${details.name}`} />
                         <p>{details.name}</p>
                         <p>{details.location.address}</p>
+                        
                     </>
                 </InfoWindow>
             )};
@@ -40,13 +44,14 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
   </GoogleMap>
 ))
 
-export default class Map extends Component{
+export default class Map extends Component{   
     
     render() {
 
         return(
-            <MyMapComponent className="map-header"
-            // Catch error handler for map not loading!!
+            <HandleError>
+                <MyMapComponent className="map-header"
+                // Catch error handler for map not loading!!
                 {...this.props}
                 isMarkerShown
                 role='application'
@@ -55,7 +60,9 @@ export default class Map extends Component{
                 loadingElement={<div style={{ height: `100%` }} alt={'google map'} />}
                 containerElement={<div style={{width: `100%`, height: `100vh` }} alt={'google map'}/>}
                 mapElement={<div style={{ height: `100vh` }} alt={'google map'}/>}
-            />
+                />
+            </HandleError>
+            
         )
         
     }

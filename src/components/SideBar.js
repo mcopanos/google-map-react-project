@@ -86,6 +86,7 @@ export default class Map extends Component {
                             <label htmlFor="namedInput">filter:</label>
                             <input 
                                 type="text"
+                                tabIndex="0"
                                 placeholder="search here"
                                 aria-label="filter parks"
                                 aria-required="true"
@@ -107,9 +108,9 @@ export default class Map extends Component {
                         {showingVenues
                             .map((venue, index) =>
                             <li 
-                                role='list'
+                                role="list"
                                 key={index} 
-                                tabIndex='0'
+                                tabIndex="0"
                                 onClick={() => this.props.listItemEvent(venue)}
                                 onKeyPress={()=> this.props.listItemKeyPress(venue)}
                             >
