@@ -11,17 +11,17 @@ class App extends Component {
       venues: [],
       markers: [],
       updateMarkers: marker => {this.setState(marker);},
-      animation: null,
     };
   }
   
   // Close info window
   closeWindow = () => {
     const markers = this.state.markers;
-    markers.map(marker => {
-      marker.isOpen=false;
+    markers.filter(marker => {
+      marker.isOpen = false;
       return marker;
     })
+    
   }
 
   // Open info window
@@ -29,13 +29,13 @@ class App extends Component {
     this.closeWindow();
     marker.isOpen = true;
     this.setState({markers: Object.assign(this.state.markers, marker)});
+    
     const venue = this.state.venues.find(venue => venue.id === marker.id);
-
     FourSquareAPI.getVenuesDetails(marker.id)
     .then(results => {
       const details = Object.assign(venue, results.response.venue);
       this.setState({venues: Object.assign(this.state.venues, details)})
-    }).catch(err => console.log(err));  
+    }).catch(err => console.log(err)); 
   }
 
   // Open window of clicked list item

@@ -20,7 +20,7 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
                 onClick={() => props.openWindow(marker)}
                 alt={marker.name}
                 position={marker.location}
-                animation={marker.isOpen || array.length < 7 ? 1 : 2}
+                animation={marker.isOpen|| array.length < 7 ? 1 : 2}
             >
         {/* Checking to see if the info window is open and if so display our photo and description */}
             {marker.isOpen && 
@@ -51,15 +51,14 @@ export default class Map extends Component{
         return(
             <HandleError>
                 <MyMapComponent className="map-header"
-                // Catch error handler for map not loading!!
-                {...this.props}
-                isMarkerShown
-                role='application'
-                aria-label='map'
-                googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBBi_PjE3B6SmXv9A4nkh9-YlyJJePG6oM"
-                loadingElement={<div style={{ height: `100%` }} alt={'google map'} />}
-                containerElement={<div style={{width: `100%`, height: `100vh` }} alt={'google map'}/>}
-                mapElement={<div style={{ height: `100vh` }} alt={'google map'}/>}
+                    {...this.props}
+                    isMarkerShown
+                    role='application'
+                    aria-label='map'
+                    googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBBi_PjE3B6SmXv9A4nkh9-YlyJJePG6oM"
+                    loadingElement={<div style={{ height: `100%` }} alt={'google map'} />}
+                    containerElement={<div style={{width: `100%`, height: `100vh` }} alt={'google map'}/>}
+                    mapElement={<div style={{ height: `100vh` }} alt={'google map'}/>}
                 />
             </HandleError>
             
